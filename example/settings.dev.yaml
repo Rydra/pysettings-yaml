@@ -1,0 +1,6 @@
+settings:
+  SAMPLE_SETTING_INT:
+    origins:
+      - name: env
+      - name: direct
+        value: 2

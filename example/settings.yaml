@@ -1,0 +1,11 @@
+settings:
+  SAMPLE_SETTING_BOOL:
+    origins:
+      - name: env
+      - name: direct
+        value: true
+  SAMPLE_SETTING_STR:
+    origins:
+      - name: env
+      - name: direct
+        value: banana

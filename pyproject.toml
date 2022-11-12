@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "pysettings-yaml"
+version = "0.1.0"
+description = ""
+authors = ["David <davigetto@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pydantic = "^1.10.2"
+python-decouple = "^3.6"
+split-settings = "^1.0.0"
+funcy = "^1.17"
+boto3 = "^1.26.8"
+PyYAML = "^6.0"
+deepmerge = "^1.1.0"
+
+[tool.poetry.dev-dependencies]
+PyHamcrest = "^2.0.4"
+pytest = "^7.2.0"
+pytest-datadir = "^1.4.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
