@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 from typing import Optional, List, Dict, Union, Any, cast
 
 from decouple import undefined, Undefined, UndefinedValueError, strtobool
@@ -97,7 +98,7 @@ class RegistryModel(BaseModel):
 
 
 def get_config(
-    setting_paths: Optional[List[Union[str, _Optional]]] = None,
+    setting_paths: Optional[List[Union[str, Path, _Optional]]] = None,
     registry: Optional[RegistryModel] = None,
     additional_providers: Optional[List[SettingsProvider]] = None,
 ) -> Any:
