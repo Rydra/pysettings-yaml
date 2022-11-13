@@ -1,8 +1,12 @@
 [tool.poetry]
 name = "pysettings-yaml"
 version = "0.1.1"
-description = ""
+description = "Settings library for human beings"
 authors = ["David <davigetto@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/Rydra/pysettings-yaml"
+repository = "https://github.com/Rydra/pysettings-yaml"
+keywords = ["settings"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
