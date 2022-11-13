@@ -1,0 +1,7 @@
+settings:
+  SAMPLE_SETTING:
+    origins:
+      - name: aws
+        path: some/path
+        decrypt: true
+      - name: env

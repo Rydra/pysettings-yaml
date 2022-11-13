@@ -2,7 +2,7 @@ from decouple import config as config_dec
 from split_settings.tools import optional
 from pathlib import Path
 
-from pysettings_yaml.loader import get_config, load_registry
+from pysettings_yaml.loader import get_config
 
 ENVIRONMENT = config_dec("ENVIRONMENT", default="dev")
 
@@ -14,7 +14,7 @@ setting_files = [
 ]
 
 
-config = get_config(registry=load_registry(setting_files))
+config = get_config(setting_files)
 
 SAMPLE_SETTING_BOOL = config("SAMPLE_SETTING_BOOL", cast=bool)
 SAMPLE_SETTING_STR = config("SAMPLE_SETTING_STR", cast=str)

@@ -2,7 +2,8 @@ from decouple import UndefinedValueError
 from hamcrest import *
 from split_settings.tools import optional
 
-from pysettings_yaml.loader import load_registry, get_config
+from pysettings_yaml.loader import get_config
+from tests.custom_setting_provider import SampleAWSSettingsProvider
 
 
 class TestPySettingsYaml:
@@ -13,7 +14,7 @@ class TestPySettingsYaml:
             optional(shared_datadir / "settings.prod.yaml"),
         ]
 
-        config = get_config(registry=load_registry(setting_files))
+        config = get_config(setting_files)
 
         assert_that(config("SAMPLE_SETTING_BOOL", cast=bool), is_(True))
         assert_that(config("SAMPLE_SETTING_STR", cast=str), is_("banana"))
@@ -28,7 +29,7 @@ class TestPySettingsYaml:
             optional(shared_datadir / "settings.prod.yaml"),
         ]
 
-        config = get_config(registry=load_registry(setting_files))
+        config = get_config(setting_files)
 
         assert_that(config("SAMPLE_SETTING_STR", cast=str), is_("apple"))
 
@@ -41,7 +42,7 @@ class TestPySettingsYaml:
             optional(shared_datadir / "settings.prod.yaml"),
         ]
 
-        config = get_config(registry=load_registry(setting_files))
+        config = get_config(setting_files)
 
         assert_that(config("SAMPLE_SETTING_STR", cast=str), is_("banana"))
 
@@ -54,7 +55,7 @@ class TestPySettingsYaml:
             optional(shared_datadir / "settings.prod.yaml"),
         ]
 
-        config = get_config(registry=load_registry(setting_files))
+        config = get_config(setting_files)
 
         assert_that(config("NON_EXISTANT_VAR", cast=str), is_("apple"))
 
@@ -65,9 +66,23 @@ class TestPySettingsYaml:
             optional(shared_datadir / "settings.prod.yaml"),
         ]
 
-        config = get_config(registry=load_registry(setting_files))
+        config = get_config(setting_files)
 
         assert_that(
             calling(config).with_args("NON_EXISTANT_VAR", cast=str),
             raises(UndefinedValueError),
+        )
+
+    def test_the_library_is_extensible_with_custom_setting_provider(
+        self, shared_datadir
+    ):
+        setting_files = [
+            shared_datadir / "settings_aws.yaml",
+        ]
+
+        config = get_config(
+            setting_files, additional_providers=[SampleAWSSettingsProvider()]
+        )
+        assert_that(
+            config("SAMPLE_SETTING", cast=str), is_("path: some/path, decrypt: True")
         )
