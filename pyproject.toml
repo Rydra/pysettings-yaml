@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pysettings-yaml"
-version = "0.1.1"
+version = "0.1.2"
 description = "Settings library for human beings"
 authors = ["David <davigetto@gmail.com>"]
 readme = "README.md"
@@ -25,7 +25,7 @@ pytest-datadir = "^1.4.1"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.1.1"
+version = "0.1.2"
 tag_format = "$version"
 version_files = [
     "pyproject.toml:version"
