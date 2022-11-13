@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pysettings-yaml"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["David <davigetto@gmail.com>"]
 
@@ -21,7 +21,7 @@ pytest-datadir = "^1.4.1"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.1.0"
+version = "0.1.1"
 tag_format = "$version"
 version_files = [
     "pyproject.toml:version"
