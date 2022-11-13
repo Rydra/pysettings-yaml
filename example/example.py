@@ -2,7 +2,7 @@ from decouple import config as config_dec
 from split_settings.tools import optional
 from pathlib import Path
 
-from pysettings_yaml.loader import get_config
+from pysettings_yaml import get_config
 
 ENVIRONMENT = config_dec("ENVIRONMENT", default="dev")
 

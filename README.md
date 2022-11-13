@@ -36,7 +36,7 @@ Then you can use this file like this in a `settings.py`:
 from split_settings.tools import optional
 from pathlib import Path
 
-from pysettings_yaml.loader import get_config
+from pysettings_yaml import get_config
 
 BASE_DIR = Path(__file__).parent
 
@@ -63,6 +63,41 @@ will evaluate first the `env` origin and, if that value is `None`, it will
 process the next origin, which would be `direct`. In contrast, for `SAMPLE_SETTING_STR`,
 the first origin is the `direct` origin. Since direct can never return `None`,
 the env origin will never be evaluated.
+
+
+## Overriding settings
+
+You can define several setting files to be processed in order.
+All of them will be merged together, so any subsequent setting file
+will override the settings with the same name defined in a previous file
+of the list. Very useful if you need to define different origins
+for your settings depending on your deployment environment:
+
+```python
+from split_settings.tools import optional
+from pathlib import Path
+import os
+
+from pysettings_yaml import get_config
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "dev")
+
+BASE_DIR = Path(__file__).parent
+
+setting_files = [
+    BASE_DIR / "settings.yaml",
+    BASE_DIR / f"settings.{ENVIRONMENT}.yaml",
+    optional(BASE_DIR / "settings.nonexistent.yaml")
+]
+
+
+config = get_config(setting_files)
+
+SAMPLE_SETTING_BOOL = config("SAMPLE_SETTING_BOOL", cast=bool)
+SAMPLE_SETTING_STR = config("SAMPLE_SETTING_STR")
+```
+
+Any path wrapped with the `optional` function will not raise an
+exception should that file not exist in the path you specify.
 
 ## Adding custom providers
 

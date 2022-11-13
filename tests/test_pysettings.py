@@ -2,7 +2,7 @@ from decouple import UndefinedValueError
 from hamcrest import *
 from split_settings.tools import optional
 
-from pysettings_yaml.loader import get_config
+from pysettings_yaml import get_config
 from tests.custom_setting_provider import SampleAWSSettingsProvider
 
 
